@@ -12,7 +12,7 @@ const employees = [
 
 function SearchInput(props) {
   const handleEmpChange = (event, value) => {
-    if (value) {
+    if (value && value.id) {
       props.parentCallback(value.id);
     };
   };
