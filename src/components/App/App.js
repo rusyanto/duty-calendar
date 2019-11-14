@@ -26,11 +26,16 @@ const theme = createMuiTheme({
 });
 
 function App() {
+  const [selectedEmpId, setSelectedEmpId] = React.useState(0);
+  const searchCallback = (empId) => {
+    setSelectedEmpId(empId);
+  }
+
   return (
     <ThemeProvider theme={theme}>
-        <SearchInput />
+        <SearchInput parentCallback={searchCallback} />
         <div style={{ height: 760}}>
-          <EmpCalendar />
+          <EmpCalendar empId={selectedEmpId} />
         </div>
     </ThemeProvider>
   );

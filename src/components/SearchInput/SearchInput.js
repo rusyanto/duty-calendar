@@ -4,22 +4,30 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import './SearchInput.css';
 
 const employees = [
-  { id: 0, name: 'Choon Siong Kho' },
-  { id: 1, name: 'Felix Soo' },
-  { id: 2, name: 'Kelley Sim' },
-  { id: 3, name: 'Yuen Ming Liong' },
+  { id: 1, name: 'Choon Siong Kho' },
+  { id: 2, name: 'Felix Soo' },
+  { id: 3, name: 'Kelley Sim' },
+  { id: 4, name: 'Yuen Ming Liong' },
 ];
 
-function SearchInput() {
+function SearchInput(props) {
+  const handleEmpChange = (event, value) => {
+    if (value) {
+      props.parentCallback(value.id);
+    };
+  };
+
   return (
     <Autocomplete
-      id="free-solo-demo"
+      id="input-name"
       freeSolo
-      options= {employees.map(option => option.name)}
+      options={employees}
+      getOptionLabel={option => option.name || option}
       renderInput={params => (
         <TextField {...params} label="Name" margin="dense" variant="outlined" fullWidth />
       )}
       style={{ marginBottom: 15 }}
+      onChange={handleEmpChange}
     />
   );
 }
